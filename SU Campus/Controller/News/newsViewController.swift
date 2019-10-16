@@ -1,9 +1,8 @@
 //
 //  newsViewController.swift
-//  Traffik Now
+//  SU Campus
 //
-//  Created by Abdul Moid on 4/2/1398 AP.
-//  Copyright © 1398 www.d-tech.com. All rights reserved.
+//  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
 import UIKit
@@ -17,6 +16,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.clear
+        setLongTap()
         CheckInternet.Connection() ? print("Connected To Internet") : (makeAlert(message: "You are not connected to internet"))
     }
         
@@ -24,6 +24,26 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     {
         super.viewWillAppear(animated)
         loadData()
+    }
+    
+    @objc func longPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer)
+    {
+        if dataConnection.defaults.bool(forKey: "checkSignIn") == true
+        {
+            if longPressGestureRecognizer.state == UIGestureRecognizer.State.began
+            {
+                let touchPoint = longPressGestureRecognizer.location(in: self.tableView)
+                if let indexPath = tableView.indexPathForRow(at: touchPoint)
+                {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    let user = dataConnection.getCurrentUser().split(separator: "@")
+                    if user[1] == "admin.com"
+                    {
+                        deletePost(id: dataConnection.postArray[indexPath.section][indexPath.row].id)
+                    }
+                }
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int
@@ -50,7 +70,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         cell.layer.cornerRadius = 10            //To make cell edges round
         cell.layer.masksToBounds = true
         
-        cell.emailLabel.text = "@admin"
+        cell.emailLabel.text = "@SSUET"
         cell.detailsLabel.text = dataConnection.postArray[indexPath.section][indexPath.row].details_body
         cell.detailsLabel.numberOfLines = 0
         cell.locationLabel.text = dataConnection.postArray[indexPath.section][indexPath.row].location_body
@@ -73,7 +93,7 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     func makeAlert(message: String)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "\(message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "\(message)", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
         })
         alert.addAction(restartaction)
@@ -96,20 +116,11 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 
         })
     }
-
-    //MARK:- To set the long tap on TableView
-    func setLongTap()
-    {
-        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(socialViewController.longPress(_:)))
-        longPressGesture.minimumPressDuration = 1.0 // 1 second press
-        longPressGesture.delegate = self as? UIGestureRecognizerDelegate
-        self.tableView.addGestureRecognizer(longPressGesture)
-    }
     
     //MARK:- To deletePost
     func deletePost(id: String)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "Are you sure you want to delete post?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "Are you sure you want to delete post?", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
             
             self.dataConnection.deletePost(category: "News" , child: "\(id)" , completion:
@@ -122,6 +133,20 @@ class newsViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         alert.addAction(cancel)
         alert.addAction(restartaction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    //MARK:- To set the long tap on TableView
+    func setLongTap()
+    {
+        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(newsViewController.longPress(_:)))
+        longPressGesture.minimumPressDuration = 1.0 // 1 second press
+        longPressGesture.delegate = self as? UIGestureRecognizerDelegate
+        self.tableView.addGestureRecognizer(longPressGesture)
     }
 }
 

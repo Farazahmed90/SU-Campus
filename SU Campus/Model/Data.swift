@@ -1,15 +1,16 @@
 //
 //  Data.swift
-//  Traffik Now
+//  SU Campus
 //
-//  Created by Abdul Moid on 4/1/1398 AP.
-//  Copyright © 1398 www.d-tech.com. All rights reserved.
+
+//  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
 import Foundation
 import Firebase
 import SVProgressHUD
 
+//This is a structure that is used to stored the data that is retrive from db
 struct post_array
 {
     var sender = String()
@@ -22,9 +23,10 @@ struct post_array
 class Data
 {
     var isLogedin = false
-    var postArray = [[post_array]]()
+    var postArray = [[post_array]]() //This is an array of type structure(post_array) that is used to store data that is retrive and has to shown in app
     let defaults = UserDefaults.standard
 
+    //This function is used to get data from db and show in app useses buildin firebase methods
     func retrieve_post(postcategory: String,completion: @escaping (_ message: String) -> Void)
     {
         SVProgressHUD.show()
@@ -41,6 +43,7 @@ class Data
         }
     }
     
+    //This function is used to sign in to the user useses buildin firebase methods
     func SignIn(emailTextField:UITextField ,passwordTextField: UITextField, completion: @escaping (_ message: String) -> Void)
     {
         SVProgressHUD.show()
@@ -61,6 +64,7 @@ class Data
         }
     }
     
+    //This function is used to sign out the user useses buildin firebase methods
     func deletePost(category:String ,child: String , completion: @escaping (_ message: String) -> Void)
     {
         let ref = Database.database().reference().child("\(category)").child("\(child)")
@@ -78,11 +82,13 @@ class Data
         }
     }
     
+    //This function is used to get the current user name it get the name from db useses buildin firebase methods
     func getCurrentUser() -> String
     {
         return (Auth.auth().currentUser?.email)!
     }
     
+    //This function is used to sign up the user and add it into the db useses buildin firebase methods
     func SignUp(emailTextField:UITextField ,passwordTextField: UITextField, completion: @escaping (_ message: String) -> Void)
     {
         SVProgressHUD.show()
@@ -95,12 +101,16 @@ class Data
             else
             {
                 completion("Done")
+                self.isLogedin = true
+                print(self.isLogedin)
+                self.defaults.set(self.isLogedin , forKey: "checkSignIn")
                 SVProgressHUD.dismiss()
                 print("Registration Succesful")
             }
         }
     }
     
+    //This function is used to signout the user useses buildin firebase methods
     func signOut(completion: @escaping (_ message: String) -> Void)
     {
         SVProgressHUD.show()
@@ -118,22 +128,21 @@ class Data
         }
     }
     
-    func post(detailTextField:UITextView, completion: @escaping (_ message: String) -> Void)
+    //This function is used to post in the app post is stored in db useses buildin firebase methods
+    func post(detailTextField:UITextView, PostCategory: String ,completion: @escaping (_ message: String) -> Void)
     {
         if detailTextField.text != ""
         {
             SVProgressHUD.show()
-
             let formatter = DateFormatter()
-            
             formatter.dateStyle = .short
             formatter.timeStyle = .short
-            
+        
             let date = formatter.string(from: Date())
             let username = Auth.auth().currentUser?.email
             let user = username!.split(separator: "@")
             
-            let messageDB = Database.database().reference().child("Post")
+            let messageDB = Database.database().reference().child(PostCategory)
             let postDictionary = ["Sender":
                 "\(user[0])" ,"location":"Karachi, PK","Postbody":
                     detailTextField.text!,"Date" : date]
@@ -153,6 +162,7 @@ class Data
         }
     }
     
+    //This function is for any error occurs from the firebase section i.e signin, singup, post, signout, Textfield validation
     func checkError(error:Error) -> String
     {
         let errCode = AuthErrorCode(rawValue: error._code)
@@ -169,5 +179,11 @@ class Data
             print("Create User Error: \(error)")
             return "Error"
         }
+    }
+    
+    //This function is used for messages module in the app
+    func sendMessage(user:String, text: String , completion: @escaping (_ message: String) -> Void)
+    {
+        //Code here
     }
 }

@@ -24,8 +24,8 @@
                                     <constraint firstAttribute="height" constant="71" id="cpI-G1-Npb"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x36-vl-0b6">
-                                <rect key="frame" x="147" y="382" width="81" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SU Campus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x36-vl-0b6">
+                                <rect key="frame" x="137" y="381" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="SGi-BV-4rb"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="81" id="xjZ-CF-rsj"/>
@@ -38,10 +38,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ayz-Du-dKz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-44" id="Ics-5K-59D"/>
-                            <constraint firstItem="x36-vl-0b6" firstAttribute="top" secondItem="ayz-Du-dKz" secondAttribute="bottom" constant="57" id="KbF-J2-y7T"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="x36-vl-0b6" secondAttribute="trailing" constant="147" id="lKL-k6-mL4"/>
+                            <constraint firstItem="x36-vl-0b6" firstAttribute="top" secondItem="ayz-Du-dKz" secondAttribute="bottom" constant="56" id="KbF-J2-y7T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="x36-vl-0b6" secondAttribute="trailing" constant="138" id="lKL-k6-mL4"/>
                             <constraint firstItem="ayz-Du-dKz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rwf-f5-Z4z"/>
-                            <constraint firstItem="x36-vl-0b6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="147" id="tsq-j8-WeN"/>
+                            <constraint firstItem="x36-vl-0b6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="tsq-j8-WeN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

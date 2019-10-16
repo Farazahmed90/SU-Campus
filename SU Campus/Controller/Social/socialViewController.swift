@@ -1,13 +1,11 @@
 //
 //  socialViewController.swift
-//  Traffik Now
-//
-//  Created by Abdul Moid on 4/1/1398 AP.
-//  Copyright © 1398 www.d-tech.com. All rights reserved.
+//  SU Campus
+
+//  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
 import UIKit
-import XLPagerTabStrip
 
 class socialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -33,9 +31,8 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
                 if let indexPath = tableView.indexPathForRow(at: touchPoint)
                 {
                     tableView.deselectRow(at: indexPath, animated: true)
-                    let username = dataConnection.getCurrentUser()
-                    let user = username.split(separator: "@")
-                    if dataConnection.postArray[indexPath.section][indexPath.row].sender == user[0]
+                    let user = dataConnection.getCurrentUser().split(separator: "@")
+                    if dataConnection.postArray[indexPath.section][indexPath.row].sender == user[0] || user[1] == "admin.com"
                     {
                         deletePost(id: dataConnection.postArray[indexPath.section][indexPath.row].id)
                     }
@@ -47,6 +44,7 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "goToMessages", sender: self)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -79,7 +77,6 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
         cell.layer.cornerRadius = 10            //To make cell edges round
         cell.layer.masksToBounds = true
         
-      
         cell.emailLabel.text = "@\(dataConnection.postArray[indexPath.section][indexPath.row].sender)"
         cell.detailLabel.text = dataConnection.postArray[indexPath.section][indexPath.row].details_body
         cell.detailLabel.numberOfLines = 0
@@ -89,6 +86,7 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
         cell.dateLabel.textColor = UIColor.gray
         cell.dateLabel.numberOfLines = 0
         cell.dateLabel.text = dataConnection.postArray[indexPath.section][indexPath.row].date
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
@@ -100,10 +98,9 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     //MARK:- To Make Alert
-    
     func makeAlert(message: String)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "\(message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "\(message)", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
         })
         alert.addAction(restartaction)
@@ -139,7 +136,7 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
     //MARK:- To deletePost
     func deletePost(id: String)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "Are you sure you want to delete post?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "Are you sure you want to delete post?", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
             
             self.dataConnection.deletePost(category: "Post" , child: "\(id)" , completion:
@@ -155,9 +152,4 @@ class socialViewController: UIViewController, UITableViewDataSource, UITableView
     }
 }
 
-extension socialViewController : IndicatorInfoProvider
-{    
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Social")
-    }
-}
+

@@ -1,9 +1,9 @@
 //
 //  newsTableViewCell.swift
-//  Traffik Now
+//  SU Campus
 //
-//  Created by Abdul Moid on 4/2/1398 AP.
-//  Copyright © 1398 www.d-tech.com. All rights reserved.
+
+//  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
 import UIKit

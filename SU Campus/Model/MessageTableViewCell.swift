@@ -1,8 +1,7 @@
 //
 //  MessageTableViewCell.swift
 //  Message ProtoType
-//
-//  Created by Abdul Moid on 09/09/2019.
+
 //  Copyright © 2019 d-tech. All rights reserved.
 //
 
@@ -46,8 +45,8 @@ class MessageTableViewCell: UITableViewCell
         trailingConstraint = messageBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
         leadingConstraint = messageBackgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
         
-        nametrailingConstraint = nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
-        nameleadingConstraint = nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
+        nametrailingConstraint = nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25)
+        nameleadingConstraint = nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25)
   
         messageLabel.text = message.text
         nameLabel.text = message.sender

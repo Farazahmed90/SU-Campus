@@ -1,8 +1,7 @@
 //
 //  TabBarCtrl.swift
-//  Traffik Now
-//
-//  Created by Abdul Moid on 29/08/2019.
+//  SU Campus
+
 //  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
@@ -26,6 +25,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate
     override func viewWillAppear(_ animated: Bool)
     {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
     }
     
     func setupMiddleButton()
@@ -34,7 +37,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate
         button.titleLabel!.font =  UIFont(name: "HelveticaNeue-Thin", size: 40)
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.center
         button.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
-
 
         button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.white, for: .highlighted)

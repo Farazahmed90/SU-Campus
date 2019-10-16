@@ -1,13 +1,12 @@
 //
 //  moreTableViewController.swift
-//  Traffik Now
+//  SU Campus
 //
-//  Created by Abdul Moid on 12/06/2019.
+
 //  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
 import UIKit
-import XLPagerTabStrip
 
 class moreTableViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
@@ -85,7 +84,7 @@ class moreTableViewController: UIViewController , UITableViewDelegate , UITableV
     //MARK:- To Make Alert
     func makeAlert(message: String)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "\(message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "\(message)", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
         })
         alert.addAction(restartaction)
@@ -93,11 +92,5 @@ class moreTableViewController: UIViewController , UITableViewDelegate , UITableV
     }
 }
 
-extension moreTableViewController : IndicatorInfoProvider
-{
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "More")
-    }
-}
 
 

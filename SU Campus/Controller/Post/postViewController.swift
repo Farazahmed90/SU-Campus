@@ -1,8 +1,7 @@
 //
 //  postViewController.swift
-//  Traffik Now
-//
-//  Created by Abdul Moid on 13/06/2019.
+//  SU Campus
+
 //  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
@@ -10,7 +9,6 @@ import UIKit
 
 class postViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate , UIScrollViewDelegate
 {
-    
     let dataConnection = Data()
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -70,7 +68,10 @@ class postViewController: UIViewController,UITextFieldDelegate,UITextViewDelegat
 
     @IBAction func postButton_Clicked(_ sender: Any)
     {
-        dataConnection.post(detailTextField: detailTextField, completion: { message in
+        var postCategory:String!
+        let user = dataConnection.getCurrentUser().split(separator: "@")
+        user[1] == "admin.com" ? (postCategory = "News") : (postCategory = "Post")
+        dataConnection.post(detailTextField: detailTextField, PostCategory: postCategory, completion: { message in
             message == "Posted Succesfully" ? self.makeAlert(message: message, clearTextBox: true) : self.makeAlert(message: message, clearTextBox: false)
         })
     }
@@ -83,7 +84,7 @@ class postViewController: UIViewController,UITextFieldDelegate,UITextViewDelegat
     //MARK:- To make UIAlert
     func makeAlert(message: String , clearTextBox: Bool)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "\(message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "\(message)", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
             if clearTextBox{
                 self.detailTextField.text = nil

@@ -1,9 +1,8 @@
 //
 //  Check_Connection.swift
-//  Traffik Now
-//
-//  Created by Abdul Moid on 3/27/1398 AP.
-//  Copyright © 1398 www.d-tech.com. All rights reserved.
+//  SU Campus
+
+//  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
 import SystemConfiguration

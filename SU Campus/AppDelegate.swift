@@ -1,8 +1,7 @@
 //
 //  AppDelegate.swift
-//  Traffik Now
-//
-//  Created by Abdul Moid on 12/06/2019.
+//  SU Campus
+
 //  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 

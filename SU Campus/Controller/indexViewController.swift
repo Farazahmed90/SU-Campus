@@ -1,8 +1,8 @@
 //
 //  indexViewController.swift
-//  Traffik Now
+//  SU Campus
 //
-//  Created by Abdul Moid on 12/06/2019.
+
 //  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
@@ -94,7 +94,7 @@ class indexViewController: UIViewController, UITextFieldDelegate
 
     func makeAlert(message: String , clearTextBox: Bool)
     {
-        let alert = UIAlertController(title: "Traffik Now", message: "\(message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "SU Campus", message: "\(message)", preferredStyle: .alert)
         let restartaction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
             if clearTextBox{
                 self.emailTextField.text = ""
@@ -128,6 +128,7 @@ extension UIViewController
     @objc func dismissKeyboard()
     {
         view.endEditing(true)
+        
     }
 }
 

@@ -1,8 +1,8 @@
 //
 //  TabBar.swift
-//  Traffik Now
+//  SU Campus
 //
-//  Created by Abdul Moid on 29/08/2019.
+
 //  Copyright © 2019 www.d-tech.com. All rights reserved.
 //
 
